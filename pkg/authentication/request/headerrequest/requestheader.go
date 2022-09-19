@@ -163,12 +163,6 @@ func (a *requestHeaderAuthRequestHandler) AuthenticateRequest(req *http.Request)
 	extra := newExtra(req.Header, a.extraHeaderPrefixes.Value())
 
 	// clear headers used for authentication
-	for _, headerName := range a.nameHeaders.Value() {
-		req.Header.Del(headerName)
-	}
-	for _, headerName := range a.groupHeaders.Value() {
-		req.Header.Del(headerName)
-	}
 	for k := range extra {
 		if strings.HasPrefix(k, "clusternet") {
 			continue
